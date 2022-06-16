@@ -1,0 +1,12 @@
+{
+    "name": "AuthorizeNet module",
+    "image": "images/logo.jpg",
+    "auth": "Nguyen",
+    "email": "your-email",
+    "link": "http://Your-link.com",
+    "configGroup": "Plugins",
+    "configCode": "Payment",
+    "configKey": "AuthorizeNet",
+    "version": "1.0",
+    "scartVersion": []
+}

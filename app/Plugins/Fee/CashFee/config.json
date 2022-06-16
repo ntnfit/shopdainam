@@ -1,0 +1,11 @@
+{
+    "name": "Cash Fee",
+    "image": "images/cash-fee.jpg",
+    "auth": "S-Cart",
+    "email": "lanhktc@gmail.com",
+    "link": "https://S-Cart.Org",
+    "configGroup": "Plugins",
+    "configCode": "Fee",
+    "configKey": "CashFee",
+    "version": "1.1"
+}

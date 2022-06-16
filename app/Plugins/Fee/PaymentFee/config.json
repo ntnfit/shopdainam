@@ -1,0 +1,11 @@
+{
+    "name": "Payment Fee",
+    "image": "images/logo.jpg",
+    "auth": "S-Cart",
+    "email": "lanhktc@gmail.com",
+    "link": "https://S-Cart.Org",
+    "configGroup": "Plugins",
+    "configCode": "Fee",
+    "configKey": "PaymentFee",
+    "version": "2.0"
+}
