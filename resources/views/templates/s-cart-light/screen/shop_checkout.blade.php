@@ -179,7 +179,7 @@ $layout_page = shop_checkout
                             </tr>
 
 
-                            @if (sc_config('customer_country'))
+                            
                             <tr>
                                 <td colspan="2" class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                                     <label for="country" class="control-label"><i class="fas fa-globe"></i>
@@ -200,7 +200,7 @@ $layout_page = shop_checkout
                                     @endif
                                 </td>
                             </tr>
-                            @endif
+                            
 
 
                             <tr>
@@ -216,7 +216,7 @@ $layout_page = shop_checkout
                                     </td>
                                 @endif
 
-                                @if (sc_config('customer_company'))
+                              @if (sc_config('customer_company')) 
                                     <td class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                                         <label for="company" class="control-label"><i class="fa fa-university"></i>
                                             {{ sc_language_render('order.company') }}</label>
@@ -226,15 +226,15 @@ $layout_page = shop_checkout
                                             <span class="help-block">{{ $errors->first('company') }}</span>
                                         @endif
                                     </td>
-                                @endif
+                                 @endif
                             </tr>
 
-                            @if (sc_config('customer_address1'))
+                            
                             <tr>
                                     <td colspan="2"
                                         class="form-group {{ $errors->has('address1') ? ' has-error' : '' }}">
                                         <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
-                                            {{ sc_language_render('order.address') }}:</label>
+                                            {{ sc_language_render('order.tinh') }}:</label>
                                             <select class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
                                                 id="state" name="address1" placeholder="" value="{{ old('address1') }}" onchange="getcost()" >
                                                 <option>{{ sc_language_render('customer.address1') }}</option>
@@ -245,7 +245,7 @@ $layout_page = shop_checkout
                                         @endif
                                     </td>
                             </tr>
-                            @endif
+                            
 
                             @if (sc_config('customer_address2'))
                             <tr>
