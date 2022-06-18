@@ -660,6 +660,7 @@ class ShopCartController extends RootFrontController
         $otherFee = (new ShopOrderTotal)->sumValueTotal('other_fee', $dataTotal); //sum other_fee
         $received = (new ShopOrderTotal)->sumValueTotal('received', $dataTotal); //sum received
         $total    = (new ShopOrderTotal)->sumValueTotal('total', $dataTotal);
+        $subcost = (new ShopOrderTotal)->sumValueTotal('shipping_fees', $dataTotal);
         //end total
 
         $dataOrder['store_id']        = $storeCheckout;
@@ -688,6 +689,7 @@ class ShopCartController extends RootFrontController
         $dataOrder['sent_addrress']   = $shippingAddress['addresssent'];
         $dataOrder['sent_email']      = $shippingAddress['emailsent'];
         $dataOrder['sent_phone']      = $shippingAddress['phonesent'];
+        $dataOrder['subcost']         = $subcost;
         $dataOrder['created_at']      = sc_time_now();
 
         if (!empty($shippingAddress['last_name'])) {
