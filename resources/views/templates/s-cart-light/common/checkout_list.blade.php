@@ -72,6 +72,9 @@
                 @endphp
               @endforeach
             @php
+            if($b<5)
+            {$b=5;}
+                
             
             setcookie("sumweight", $b);
             @endphp

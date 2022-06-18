@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
  */
-Route::get('/get_states', [App\Http\Controllers\StateController::class,'getAllStates']);
-Route::get('/getcost', [App\Http\Controllers\getcostshipvn::class,'getCost']);
+Route::get('/get_states', [App\Http\Controllers\StateController::class,'getAllStates'])->name('get_states');
+Route::get('/getcost', [App\Http\Controllers\getcostshipvn::class,'getCost'])->name('getcost');

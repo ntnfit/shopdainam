@@ -3,7 +3,7 @@ namespace SCart\Core\Front\Models;
 
 use SCart\Core\Front\Models\ShopCurrency;
 use Illuminate\Database\Eloquent\Model;
-
+use SCart\Core\Front\Models\ShopCostService;
 class ShopOrderTotal extends Model
 {
     use \SCart\Core\Front\Models\ModelTrait;
@@ -39,6 +39,8 @@ class ShopOrderTotal extends Model
         foreach (self::getOtherFee() as  $otherFeeMethod) {
             $objects[] = $otherFeeMethod;
         }
+        $objects[] = self::getcostship();
+        $objects[] = self::getCostService();
         $objects[] = self::getReceived();
         return $objects;
     }
@@ -72,7 +74,7 @@ class ShopOrderTotal extends Model
             'text' => sc_currency_render_symbol($tax),
             'sort' => self::POSITION_TAX,
         ];
-
+       
         // set total value
         $total = $subtotal + $tax;
         foreach ($objects as $key => $object) {
@@ -248,6 +250,41 @@ class ShopOrderTotal extends Model
     /**
      * Get other fee value
      */
+
+    public static function getCostService()
+    {
+       
+        $obj = new ShopCostService;
+        $value=round($obj->sum('value'),2);
+        return array(
+            'title' => sc_language_render('order.totals.costservice'),
+            'code' => 'service_fee',
+            'value' => $value,
+            'text' => sc_currency_render_symbol($value),
+            'sort' => 99,
+        );
+    }
+    public static function getcostship()
+    {
+       
+        if(!empty($_COOKIE["cost"]))
+       {        
+            $value=$_COOKIE["cost"]; 
+           
+       }
+       else
+       {           
+             $value =0;      
+       }
+        return array(
+            'title' => sc_language_render('order.totals.shippingfee'),
+            'code' => 'shipping_fees',
+            'value' => round($value,2),
+            'text' => sc_currency_render_symbol($value),
+            'sort' => 98,
+        );
+    }
+
     public static function getOtherFee()
     {
         $otherFeeMethod = [];

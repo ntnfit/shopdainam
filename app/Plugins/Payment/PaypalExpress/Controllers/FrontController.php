@@ -8,7 +8,7 @@ use App\Plugins\Payment\PaypalExpress\Lib\CreateOrder;
 use App\Plugins\Payment\PaypalExpress\Lib\CaptureOrder;
 use SCart\Core\Front\Controllers\ShopCartController;
 use SCart\Core\Front\Models\ShopOrder;
-
+use SCart\Core\Front\Models\ShopCostService;
 use Throwable;
 
 class FrontController extends RootFrontController
@@ -136,7 +136,7 @@ class FrontController extends RootFrontController
         $currency = $dataOrder['currency'] ?? '';
         $orderID = session('orderID') ?? 0;
         $arrCartDetail = session('arrCartDetail')?? null;
-    
+        $costservice=ShopCostService::sum('value');
         if ($orderID && $dataOrder && $arrCartDetail) {
             $dataTotal = [
                 'item_total' => [
@@ -153,7 +153,7 @@ class FrontController extends RootFrontController
                 ],
                 'handling' => [
                     'currency_code' => $currency,
-                    'value' => (float)($dataOrder['other_fee'] ?? 0),
+                    'value' => (float)($dataOrder['other_fee'] ?? 0)+round($costservice,2),
                 ],
                 'discount' => [
                     'currency_code' => $currency,
@@ -177,11 +177,11 @@ class FrontController extends RootFrontController
             $dataPayment['reference_id'] = $orderID;
             $dataPayment['amount'] = [
                 'currency_code' => $currency,
-                'value' =>round( (float)$dataOrder['total'],2),
+                'value' => (float)$dataOrder['total'],
                 'breakdown' => $dataTotal,
             ];
             $dataPayment['items'] = $dataItems;
-
+           
             return redirect()->route('paypalexpress.index')->with('dataPayment', $dataPayment);
         } else {
             return redirect(sc_route('cart'))->with(['error' => 'Data not correct']);

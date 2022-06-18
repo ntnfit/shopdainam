@@ -596,31 +596,7 @@ class ShopCartController extends RootFrontController
         //Set session dataTotal
         session(['dataTotal' => $dataTotal]);
       
-       if(!empty($_COOKIE["cost"]))
-       {        
-            $value=$_COOKIE["cost"]; 
-           
-       }
-       else
-       {           
-             $value =0;      
-       }
-        
-        $text=sc_currency_render_symbol($value, $currency = null, $space_between_symbol = false, $include_symbol = true);
-        $subcode = array("title"=>"Phí shipping", "code"=>"Shipping cost", "value"=>$value, "text"=> $text,"sort" => "98");
-        array_push($dataTotal,$subcode);
-       
-        $total=$dataTotal[5];
-        $revalue=$total['value']+ $value;
-        $text= sc_currency_render_symbol($revalue, $currency = null, $space_between_symbol = false, $include_symbol = true);
-        $dataTotal[5] = array("title"=>"Tổng tiền", "code"=>"total", "value"=>$revalue, "text"=> $text,"sort" => "100");
-       
-        $a=$dataTotal[5];
-        $b=$dataTotal[6];
-        $c=$dataTotal[7];
-        $dataTotal[5]=$c;
-        $dataTotal[6]=$a;
-        $dataTotal[7]=$b;
+      
 
         sc_check_view($this->templatePath . '.screen.shop_checkout_confirm');
         return view(
@@ -675,29 +651,7 @@ class ShopCartController extends RootFrontController
             $storeCheckout   = session('storeCheckout') ?? '';
             $dataCheckout    = session('dataCheckout') ?? '';
         }
-        if(!empty($_COOKIE["cost"]))
-        {        
-             $value=$_COOKIE["cost"]; 
-            
-        }
-        else
-        {           
-              $value =0;      
-        }
-         
-         $text=sc_currency_render_symbol($value, $currency = null, $space_between_symbol = false, $include_symbol = true);
-         $subcode = array("title"=>"Phí shipping", "code"=>"Shipping cost", "value"=>$value, "text"=> $text,"sort" => "98");
-         array_push($dataTotal,$subcode);
-         $total=$dataTotal[5];
-         $revalue=$total['value']+ $value;
-         $text= sc_currency_render_symbol($revalue, $currency = null, $space_between_symbol = false, $include_symbol = true);
-         $dataTotal[5] = array("title"=>"Tổng tiền", "code"=>"total", "value"=>$revalue, "text"=> $text,"sort" => "100");
-          $a=$dataTotal[5];
-         $b=$dataTotal[6];
-         $c=$dataTotal[7];
-         $dataTotal[5]=$c;
-         $dataTotal[6]=$a;
-         $dataTotal[7]=$b;
+        
         //Process total
         $subtotal = (new ShopOrderTotal)->sumValueTotal('subtotal', $dataTotal); //sum total
         $tax      = (new ShopOrderTotal)->sumValueTotal('tax', $dataTotal); //sum tax
@@ -705,7 +659,6 @@ class ShopCartController extends RootFrontController
         $discount = (new ShopOrderTotal)->sumValueTotal('discount', $dataTotal); //sum discount
         $otherFee = (new ShopOrderTotal)->sumValueTotal('other_fee', $dataTotal); //sum other_fee
         $received = (new ShopOrderTotal)->sumValueTotal('received', $dataTotal); //sum received
-        $subcode = (new ShopOrderTotal)->sumValueTotal('subcode', $dataTotal);
         $total    = (new ShopOrderTotal)->sumValueTotal('total', $dataTotal);
         //end total
 
@@ -735,7 +688,6 @@ class ShopCartController extends RootFrontController
         $dataOrder['sent_addrress']   = $shippingAddress['addresssent'];
         $dataOrder['sent_email']      = $shippingAddress['emailsent'];
         $dataOrder['sent_phone']      = $shippingAddress['phonesent'];
-        $dataOrder['subcost']         = $dataTotal[5]['value'];
         $dataOrder['created_at']      = sc_time_now();
 
         if (!empty($shippingAddress['last_name'])) {
@@ -1443,4 +1395,3 @@ class ShopCartController extends RootFrontController
         session()->forget('orderID'); //destroy orderID
     }
 }
-

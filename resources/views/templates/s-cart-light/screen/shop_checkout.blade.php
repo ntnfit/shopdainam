@@ -421,7 +421,7 @@ $layout_page = shop_checkout
         <script>
             function getstate() {
               let country_id = document.getElementById("country").value;
-                   $.get('/get_states?country='+country_id,function(data){
+                   $.get('{{route("get_states")}}?country='+country_id,function(data){
                        $("#state").html(data);
             })
         }
@@ -431,11 +431,15 @@ $layout_page = shop_checkout
                 function getcost() {
                   let country_id = document.getElementById("state").value;
 			let weight = $.cookie("sumweight");
-                       $.get('/getcost?state='+country_id,function(data){
-                      
+                       $.get('{{route("getcost")}}?state='+country_id,function(data){
+                      if(weight<5)
+                      {
+                        weight=5;
+                      }
                         document.cookie="cost=" +  data*weight;
                 })
             }
+            console.log(data*weight);
                 </script>
 
 
