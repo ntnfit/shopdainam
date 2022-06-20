@@ -67,7 +67,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     </td>
                                     <td>{!! $product->showPrice() !!}</td>
                                     <td>{{$item->qty}}</td>
-                                    <td>{{$product->weight}}</td>
+                                    <td>{{$product->weight}} Lbs</td>
                                     <td align="right">{{sc_currency_render($item->subtotal)}}</td>
                                 </tr>
                                 {{--// Render product in cart --}}
