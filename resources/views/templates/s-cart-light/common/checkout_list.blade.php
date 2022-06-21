@@ -58,7 +58,7 @@
                   </td>
                   <td class="cart-col-qty">
                     <div class="cart-qty">
-                     {{$product->weight}} Lbs
+                     {{$product->weight*$item->qty}} Lbs
                        </div>
                   </td >
                   <td align="right">

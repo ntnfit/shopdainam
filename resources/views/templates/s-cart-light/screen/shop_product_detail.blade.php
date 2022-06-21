@@ -69,7 +69,8 @@ $layout_page = shop_product_detail
                 
                 <p>
                   SKU: <span id="product-detail-model">{{ $product->sku }}</span>
-
+                  <br>
+                  {{ sc_language_render('product.weight') }}: {{ $product->weight }} Lbs
                 </p>
 
                 {{-- Show price --}}

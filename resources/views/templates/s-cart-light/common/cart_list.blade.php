@@ -7,6 +7,7 @@
                   <th>{{ sc_language_render('product.name') }}</th>
                   <th>{{ sc_language_render('product.price') }}</th>
                   <th>{{ sc_language_render('product.quantity') }}</th>
+                  <th>{{ sc_language_render('product.weight') }}</th>
                   <th>{{ sc_language_render('product.subtotal') }}</th>
                   <th></th>
               </tr>
@@ -60,7 +61,9 @@
                       </span>
                       @endif
                   </td>
-
+                  <td align="right">
+                    {{$item->qty*$product->weight}} Lbs
+                </td>
                   <td align="right">
                       {{sc_currency_render($item->subtotal)}}
                   </td>
