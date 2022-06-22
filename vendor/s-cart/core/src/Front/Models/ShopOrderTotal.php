@@ -255,7 +255,7 @@ class ShopOrderTotal extends Model
     {
        
         $obj = new ShopCostService;
-        $value=round($obj->sum('value'),2);
+        $value=sc_currency_value(round($obj->sum('value'),2));
         return array(
             'title' => sc_language_render('order.totals.costservice'),
             'code' => 'service_fee',
