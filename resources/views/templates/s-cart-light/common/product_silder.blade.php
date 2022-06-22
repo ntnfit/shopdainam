@@ -2,7 +2,7 @@
  <div class="single-product">
     <div class="product-img">
        <a href="{{ $product->getUrl() }}">
-      <img class="img-fluid w-100" src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
+      <img class="img-fluid w-100" src="{{ sc_file($product->getThumb()) }}" alt="{!! $product->name !!}"/>
       </a>
       <div class="p_icon">
         <a href="{{ $product->getUrl() }}">

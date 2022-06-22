@@ -31,7 +31,7 @@ if ($lastView && count($lastView)) {
                 <div class="unit-left"><a class="post-minimal-figure" href="{{ $productLastView->getUrl() }}">
                     <img src="{{ sc_file($productLastView->getThumb()) }}" alt="" width="106" height="104"></a></div>
                 <div class="unit-body">
-                  <p class="post-minimal-title"><a href="{{ $productLastView->getUrl() }}">{{ $productLastView->name}}</a></p>
+                  <p class="post-minimal-title"><a href="{{ $productLastView->getUrl() }}">{!! $productLastView->name !!}</a></p>
                   <div class="post-minimal-time">
                     <time datetime="{{ $productLastView['timelastview'] }}">{{ $productLastView['timelastview'] }}</time>
                   </div>

@@ -32,7 +32,7 @@
                               alt="{{ $product->name }}">
                       </a>
                           <span>
-                            <a href="{{$product->getUrl() }}" class="row_cart-name">{{ $product->name }}</a><br />
+                            <a href="{{$product->getUrl() }}" class="row_cart-name">{!! $product->name !!}</a><br />
                               <b>{{ sc_language_render('product.sku') }}</b> : {{ $product->sku }}
                               {!! $product->displayVendor() !!}<br>
                               {{-- Process attributes --}}
