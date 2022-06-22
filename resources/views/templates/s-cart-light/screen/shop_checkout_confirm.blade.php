@@ -52,7 +52,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                     <td>{{ $n }}</td>
                                     <td>{{ $product->sku }}</td>
                                     <td>
-                                        {{ $product->name }}<br>
+                                        {!! $product->name !!}<br>
                                         {{-- Process attributes --}}
                                         @if ($item->options->count())
                                         (

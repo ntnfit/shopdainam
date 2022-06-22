@@ -63,7 +63,7 @@ $layout_page = shop_product_detail
               <input type="hidden" name="storeId" id="product-detail-storeId" value="{{ $product->store_id }}" />
               <input type="hidden" name="weight" id="product-detail-weight" value="{{ $product->weight}}" />
               <div class="single-product">
-                <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ $product->name }}</h3>
+                <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{!! $product->name !!}</h3>
                 
                 {!! $product->displayVendor() !!}
                 

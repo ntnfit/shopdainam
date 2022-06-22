@@ -16,7 +16,7 @@ $productPromotion = $modelProduct->getProductPromotion()->setRandom()->setLimit(
             </a>
           </div>
           <div class="unit-body">
-            <p class="product-minimal-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></p>
+            <p class="product-minimal-title"><a href="{{ $product->getUrl() }}">{!! $product->name !!}</a></p>
             <p class="product-minimal-price">
               {!! $product->showPrice() !!}
             </p>
