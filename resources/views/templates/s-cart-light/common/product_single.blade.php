@@ -18,7 +18,8 @@
             </div>
             <div class="product-btm">
               <a href="{{ $product->getUrl() }}" class="d-block">
-                <h4>{{ $product->name }}</h4>
+                <h4>{!!$product->name!!}</h4>
+               
               </a>
               <div class="mt-3">
                 <span class="mr-4">  {!! $product->showPrice() !!}</span>
