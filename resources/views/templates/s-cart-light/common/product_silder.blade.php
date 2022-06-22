@@ -2,7 +2,7 @@
  <div class="single-product">
     <div class="product-img">
        <a href="{{ $product->getUrl() }}">
-      <img class="img-fluid w-100" src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
+      <img class="img-fluid w-100" src="{{ sc_file($product->getThumb()) }}" alt="{!! $product->name !!}"/>
       </a>
       <div class="p_icon">
         <a href="{{ $product->getUrl() }}">
@@ -18,7 +18,7 @@
     </div>
     <div class="product-btm">
       <a href="{{ $product->getUrl() }}" class="d-block">
-        <h4>{{ $product->name }}</h4>
+        <h4>{!! $product->name !!}</h4>
       </a>
       <div class="mt-3">
         <span class="mr-4">  {!! $product->showPrice() !!}</span>
