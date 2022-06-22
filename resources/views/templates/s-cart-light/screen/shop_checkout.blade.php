@@ -439,10 +439,16 @@ $layout_page = shop_checkout
                         document.cookie="cost=" +  data*weight;
                 })
             }
-            console.log(data*weight);
+            
+          
                 </script>
+                <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(function() {
+        document.cookie="cost=" +  0;
+    });
 
-
+</script>
             @endif
         </div>
     </div>
