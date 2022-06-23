@@ -661,6 +661,8 @@ class ShopCartController extends RootFrontController
         $received = (new ShopOrderTotal)->sumValueTotal('received', $dataTotal); //sum received
         $total    = (new ShopOrderTotal)->sumValueTotal('total', $dataTotal);
         $subcost = (new ShopOrderTotal)->sumValueTotal('shipping_fees', $dataTotal);
+        $costservice = (new ShopOrderTotal)->sumValueTotal('service_fee', $dataTotal);
+        
         //end total
 
         $dataOrder['store_id']        = $storeCheckout;
@@ -690,6 +692,7 @@ class ShopCartController extends RootFrontController
         $dataOrder['sent_email']      = $shippingAddress['emailsent'];
         $dataOrder['sent_phone']      = $shippingAddress['phonesent'];
         $dataOrder['subcost']         = $subcost;
+        $dataOrder['costservice']     =$costservice;
         $dataOrder['created_at']      = sc_time_now();
 
         if (!empty($shippingAddress['last_name'])) {
@@ -1248,6 +1251,8 @@ class ShopCartController extends RootFrontController
                     '/\{\{\$otherFee\}\}/',
                     '/\{\{\$total\}\}/',
                     '/\{\{\$subcost\}\}/',
+                    '/\{\{\$tax\}\}/',
+                    '/\{\{\$costservice\}\}/',
                 ];
                 $dataReplace = [
                     sc_language_render('email.order.email_subject_customer') . '#' . $orderID,
@@ -1269,6 +1274,8 @@ class ShopCartController extends RootFrontController
                     sc_currency_render($data['other_fee'], '', '', '', false),
                     sc_currency_render($data['total'], '', '', '', false),
                     sc_currency_render($data['subcost'], '', '', '', false),
+                    sc_currency_render($data['tax'], '', '', '', false),
+                    sc_currency_render($data['costservice'], '', '', '', false)
                 ];
                
                 // Send mail order success to admin
