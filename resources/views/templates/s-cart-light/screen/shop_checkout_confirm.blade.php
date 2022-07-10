@@ -208,7 +208,13 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
                                                             src="{{ sc_file($paymentMethodData['image']) }}"
                                                             style="width: 120px;">
                                                     </label>
+                                                    
+                                                    {{-- Render view --}}
+                                           @includeIf($paymentMethodData['pathPlugin'].'::render') 
+                                            {{-- //Render view --}}
+                                            </
                                                 </div>
+                                              
                                             </div>
                                         </div>
                                     </div>

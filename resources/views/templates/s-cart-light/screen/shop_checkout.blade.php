@@ -386,7 +386,7 @@ $layout_page = shop_checkout
                                             </div>
 
                                             {{-- Render view --}}
-                                            @includeIf($payment['pathPlugin'].'::render')
+                                          <!-- @includeIf($payment['pathPlugin'].'::render') -->
                                             {{-- //Render view --}}
 
                                             @endforeach
