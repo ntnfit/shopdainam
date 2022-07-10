@@ -1223,12 +1223,12 @@ class ShopCartController extends RootFrontController
                     }
 
                     $orderDetail .= '<tr>
-                                    <td>' . ($key + 1) . '</td>
-                                    <td>' . $detail['sku'] . '</td>
-                                    <td>' . $nameProduct . '</td>
-                                    <td>' . sc_currency_render($detail['price'], '', '', '', false) . '</td>
-                                    <td>' . number_format($detail['qty']) . '</td>
-                                    <td align="right">' . sc_currency_render($detail['total_price'], '', '', '', false) . '</td>
+                                    <td style="width:10%;">' . ($key + 1) . '</td>
+                                    <td style=width:10%;">' . $detail['sku'] . '</td>
+                                    <td style="width:35%;">' . $nameProduct . '</td>
+                                    <td style="width:15%;">' . sc_currency_render($detail['price'], '', '', '', false) . '</td>
+                                    <td style="width:10%;">' . number_format($detail['qty']) . '</td>
+                                    <td style="width:20%;" align="right">' . sc_currency_render($detail['total_price'], '', '', '', false) . '</td>
                                 </tr>';
                 }
                 $dataFind = [
