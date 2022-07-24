@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Consolidate;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::get('order-cargo', 'Consolidate@order');
+Route::get('order-detail-cargo/{id}', 'Consolidate@orderDetail'); 

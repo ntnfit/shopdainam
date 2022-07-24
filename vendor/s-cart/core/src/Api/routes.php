@@ -47,7 +47,7 @@ Route::group(
             Route::get('customers/{id}', 'AdminCustomerController@customerDetail');
 
             Route::get('orders', 'AdminOrderController@orders');
-            Route::get('orders/{id}', 'AdminOrderController@orderDetail');
+            Route::get('orders/{id}','AdminOrderController@orderDetail');
             Route::post('create_order', 'AdminOrderController@createOrder');
             Route::post('cancel_order/{id}', 'AdminOrderController@cancelOrder');
 
@@ -71,4 +71,6 @@ Route::group(
         });
     }
 );
+
+
 }

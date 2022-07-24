@@ -1,0 +1,12 @@
+{
+    "name": "Nganluong module",
+    "image": "images/logo.jpg",
+    "auth": "NGUYEN",
+    "email": "your-email",
+    "link": "http://Your-link.com",
+    "configGroup": "Plugins",
+    "configCode": "Payment",
+    "configKey": "Nganluong",
+    "version": "1.0",
+    "scartVersion": []
+}

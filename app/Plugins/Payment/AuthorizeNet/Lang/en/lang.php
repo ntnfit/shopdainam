@@ -13,5 +13,6 @@ return [
         'authorize_payment_status'             => 'Payment status when success',
         'currency_only_allow' => 'currency only allow',
         'error_number' => 'Error payment. Code :code',
+       
 ];
 

@@ -12,6 +12,7 @@ return [
     'authorize_order_status_faild'       => 'Trạng thái đơn hàng khi thất bại',
     'authorize_payment_status'             => 'Trạng thái thanh toán thành công',
     'currency_only_allow' => 'Tiền tệ không hợp lệ',
-    'error_number' => 'Lỗi khi thanh toán. Mã lỗi :code'
+    'error_number' => 'Lỗi khi thanh toán. Mã lỗi :code',
+    
 ];
 
