@@ -369,27 +369,37 @@ $layout_page = shop_checkout
                                             @endif
                                         </div>
                                         <div class="form-group cart-payment-method">
-                                            @foreach ($paymentMethod as $key => $payment)
-                                            <div>
+					   <table class="table" border="1">
+						@foreach ($paymentMethod as $key => $payment)
+                                            	
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="paymentMethod"
+						    <tr>
+							
+							<th>
+                                                        <label class="radio-inline" for="payment-{{ $payment['key'] }}">
+							
+							<input type="radio" name="paymentMethod"
                                                         value="{{ $payment['key'] }}"
                                                         {{ (old('shippingMethod') == $key)?'checked':'' }}
-                                                        style="position: relative;"
-                                                        {{ ($payment['permission'])?'':'disabled' }}>
-                                                        <label class="radio-inline" for="payment-{{ $payment['key'] }}">
-                                                            <img title="{{ $payment['title'] }}"
-                                                                alt="{{ $payment['title'] }}"
-                                                                src="{{ sc_file($payment['image']) }}">
-                                                        </label>
+                                                        style="position: relative; line-height: 100px;"
+							{{ ($payment['permission'])?'':'disabled' }} id="payment-{{ $payment['key'] }}" >
+							<img style="max-width:200px; max-height:200px; line-height: 100px;"
+                                                                 title="{{ $payment['title'] }}"
+                                                                 alt="{{ $payment['title'] }}"
+                                                                 src="{{ sc_file($payment['image']) }}">
+							</label>
+							</th>
+							<th> <p style="line-height: 100px;">{{ $payment['title'] }}</p> </th>
+						     </tr>
                                                 </label>
-                                            </div>
+                                            
 
                                             {{-- Render view --}}
                                           <!-- @includeIf($payment['pathPlugin'].'::render') -->
                                             {{-- //Render view --}}
 
-                                            @endforeach
+					    @endforeach
+					    </table>
                                         </div>
                                     </div>
                                 </div>

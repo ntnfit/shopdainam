@@ -1,6 +1,6 @@
 <?php
 return [
-    'title'      => 'AuthorizeNet',
+    'title'      => 'Thẻ quốc tế - Visa Master Card',
     'admin'      => [
         'title'          => 'AuthorizeNet',
     ],

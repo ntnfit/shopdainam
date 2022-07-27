@@ -1,6 +1,6 @@
 <?php
 return [
-    'title'      => 'Nganluong',
+    'title'      => 'Thẻ ATM nội địa Việt Nam',
     'admin'      => [
         'title'          => 'Nganluong',
     ],

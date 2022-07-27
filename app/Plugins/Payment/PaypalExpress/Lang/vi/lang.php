@@ -1,6 +1,6 @@
 <?php
 return [
-    'title'                       => 'PaypalExpress',
+    'title'                       => 'PayPal',
     'id'                          => 'ID',
     'paypal_currency'             => 'Loại tiền',
     'paypal_order_status_success' => 'Trạng thái thành công',
