@@ -16,7 +16,7 @@ class AppConfig extends ConfigDefault
     const ORDER_STATUS_PROCESSING = 2; // Processing
     const ORDER_STATUS_FAILD = 6; // Failed
     const PAYMENT_STATUS = 3; // Paid
-
+    public $currencyAllow;
     public function __construct()
     {
         //Read config from config.json
@@ -35,6 +35,7 @@ class AppConfig extends ConfigDefault
         $this->version = $config['version'];
         $this->auth = $config['auth'];
         $this->link = $config['link'];
+        $this->currencyAllow = ['USD']; 
     }
 
     public function install()

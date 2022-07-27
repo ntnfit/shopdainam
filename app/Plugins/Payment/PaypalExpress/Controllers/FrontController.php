@@ -26,7 +26,8 @@ class FrontController extends RootFrontController
         if(empty(session('dataPayment'))) {
             return redirect(sc_route('cart'))->with(["error" => 'No session']);
         }
-        $dataPayment = session('dataPayment');
+        $dataPayment = session('dataPayment'); 
+       
         $dataMapping = [
             'intent' => 'CAPTURE',
             'application_context' => [
@@ -37,7 +38,7 @@ class FrontController extends RootFrontController
             ],
             'purchase_units' => [$dataPayment]
         ];
-
+       
         try {
             $orderPayment = CreateOrder::createOrder($dataMapping, false);
             if ($orderPayment->statusCode == 201) {
@@ -132,16 +133,22 @@ class FrontController extends RootFrontController
      * @return  [type]  [return description]
      */
     public function processOrder() {
+       
         $dataOrder = session('dataOrder')?? [];
         $currency = $dataOrder['currency'] ?? '';
         $orderID = session('orderID') ?? 0;
         $arrCartDetail = session('arrCartDetail')?? null;
         $costservice=ShopCostService::sum('value');
+        if(!in_array($currency, $this->plugin->currencyAllow)) {
+            $msg = sc_language_render($this->plugin->pathPlugin.'::lang.currency_only_allow', ['list' => implode(',', $this->plugin->currencyAllow)]);
+            (new ShopOrder)->updateStatus($orderID, sc_config('nganluong_order_status_faild', 6), $msg);
+            return redirect(sc_route('cart'))->with(['error' => $msg]);
+        }
         if ($orderID && $dataOrder && $arrCartDetail) {
             $dataTotal = [
                 'item_total' => [
                     'currency_code' => $currency,
-                    'value' => (float)$dataOrder['subtotal'],
+                    'value' => round((float)$dataOrder['subtotal'],2),
                 ],
                 'shipping' => [
                     'currency_code' => $currency,
@@ -149,7 +156,7 @@ class FrontController extends RootFrontController
                 ],
                 'tax_total' => [
                     'currency_code' => $currency,
-                    'value' => (float)$dataOrder['tax'],
+                    'value' => round((float)$dataOrder['tax'],2),
                 ],
                 'handling' => [
                     'currency_code' => $currency,
@@ -157,7 +164,7 @@ class FrontController extends RootFrontController
                 ],
                 'discount' => [
                     'currency_code' => $currency,
-                    'value' => abs((float)$dataOrder['discount']),
+                    'value' =>round(abs((float)$dataOrder['discount']),2),
                 ],
             ];
     
@@ -177,7 +184,7 @@ class FrontController extends RootFrontController
             $dataPayment['reference_id'] = $orderID;
             $dataPayment['amount'] = [
                 'currency_code' => $currency,
-                'value' => (float)$dataOrder['total'],
+                'value' => round((float)$dataOrder['total'],2),
                 'breakdown' => $dataTotal,
             ];
             $dataPayment['items'] = $dataItems;
