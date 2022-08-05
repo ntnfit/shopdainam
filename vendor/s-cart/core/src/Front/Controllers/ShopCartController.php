@@ -1226,9 +1226,9 @@ class ShopCartController extends RootFrontController
                                     <td style="width:10%;">' . ($key + 1) . '</td>
                                     <td style=width:10%;">' . $detail['sku'] . '</td>
                                     <td style="width:35%;">' . $nameProduct . '</td>
-                                    <td style="width:15%;">' . sc_currency_render($detail['price'], '', '', '', false) . '</td>
+                                    <td style="width:15%;">' . sc_currency_render($detail['price'],sc_currency_code(),1,true,true). '</td>
                                     <td style="width:10%;">' . number_format($detail['qty']) . '</td>
-                                    <td style="width:20%;" align="right">' . sc_currency_render($detail['total_price'], '', '', '', false) . '</td>
+                                    <td style="width:20%;" align="right">' .sc_currency_render($detail['total_price'],sc_currency_code(),1,true,true). '</td>
                                 </tr>';
                 }
                 $dataFind = [
@@ -1268,14 +1268,14 @@ class ShopCartController extends RootFrontController
                     $data['phone'],
                     $data['comment'],
                     $orderDetail,
-                    sc_currency_render($data['subtotal'], '', '', '', false),
-                    sc_currency_render($data['shipping'], '', '', '', false),
-                    sc_currency_render($data['discount'], '', '', '', false),
-                    sc_currency_render($data['other_fee'], '', '', '', false),
-                    sc_currency_render($data['total'], '', '', '', false),
-                    sc_currency_render($data['subcost'], '', '', '', false),
-                    sc_currency_render($data['tax'], '', '', '', false),
-                    sc_currency_render($data['costservice'], '', '', '', false)
+                    sc_currency_render($data['subtotal'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['shipping'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['discount'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['other_fee'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['total'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['subcost'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['tax'],sc_currency_code(),1,true,true),
+                    sc_currency_render($data['costservice'],sc_currency_code(),1,true,true),
                 ];
                
                 // Send mail order success to admin

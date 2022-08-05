@@ -605,7 +605,8 @@ class ShopCartController extends RootFrontController
        {           
              $value =0;      
        }
-        
+       echo sc_currency_rate();
+        exit;
         $text=sc_currency_render_symbol($value, $currency = null, $space_between_symbol = false, $include_symbol = true);
         $subcode = array("title"=>"Phí shipping", "code"=>"Shipping cost", "value"=>$value, "text"=> $text,"sort" => "98");
         array_push($dataTotal,$subcode);
@@ -1206,6 +1207,7 @@ class ShopCartController extends RootFrontController
      */
     public function completeOrder()
     {
+        
         //Clear cart store
         $this->clearCartStore();
 
@@ -1248,6 +1250,7 @@ class ShopCartController extends RootFrontController
             $checkContent = (new ShopEmailTemplate)->where('group', 'order_success_to_admin')->where('status', 1)->first();
             $checkContentCustomer = (new ShopEmailTemplate)->where('group', 'order_success_to_customer')->where('status', 1)->first();
             if ($checkContent || $checkContentCustomer) {
+                $rate=24000;
                 $orderDetail = '';
                 $orderDetail .= '<tr>
                                     <td>' . sc_language_render('email.order.sort') . '</td>
@@ -1264,7 +1267,7 @@ class ShopCartController extends RootFrontController
                     if ($product && $pathDownload && $product->property == SC_PROPERTY_DOWNLOAD) {
                         $nameProduct .="<br><a href='".sc_path_download_render($pathDownload)."'>Download</a>";
                     }
-
+    
                     $orderDetail .= '<tr>
                                     <td>' . ($key + 1) . '</td>
                                     <td>' . $detail['sku'] . '</td>
@@ -1293,14 +1296,15 @@ class ShopCartController extends RootFrontController
                     '/\{\{\$discount\}\}/',
                     '/\{\{\$otherFee\}\}/',
                     '/\{\{\$total\}\}/',
+                    '/\{\{\$rate\}\}/'
+
                 ];
                 $dataReplace = [
                     sc_language_render('email.order.email_subject_customer') . '#' . $orderID,
                     $orderID,
                     $data['first_name'],
                     $data['last_name'],
-                    $data['first_name'].' '.$
-data['last_name'],
+                    $data['first_name'].' '.$data['last_name'],
                     $data['address1'] . ' ' . $data['address2'].' '.$data['address3'],
                     $data['address1'],
                     $data['address2'],
@@ -1314,6 +1318,7 @@ data['last_name'],
                     sc_currency_render($data['discount'], '', '', '', false),
                     sc_currency_render($data['other_fee'], '', '', '', false),
                     sc_currency_render($data['total'], '', '', '', false),
+                    $rate
                 ];
 
                 // Send mail order success to admin
